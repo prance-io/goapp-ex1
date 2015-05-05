@@ -8,13 +8,13 @@ import (
 )
 
 const (
-	defaultPort = ":9000"
+	defaultListenAddress = ":9000"
 )
 
 func main() {
-	port := os.Getenv("PORT")
+	port := os.Getenv("LISTEN_ADDRESS")
 	if port == "" {
-		port = defaultPort
+		port = defaultListenAddress
 	}
 	log.Printf("Listening on: %v", port)
 
