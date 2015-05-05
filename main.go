@@ -8,19 +8,20 @@ import (
 )
 
 const (
-	defaultListenAddress = ":9000"
+	defaultPort = "9000"
 )
 
 func main() {
-	port := os.Getenv("LISTEN_ADDRESS")
+	port := os.Getenv("PORT")
 	if port == "" {
-		port = defaultListenAddress
+		port = defaultPort
 	}
-	log.Printf("Listening on: %v", port)
+	log.Printf("Listening on port: %v", port)
+	listenInterface := fmt.Sprintf(":%s", port)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hi!\n")
 	})
 
-	log.Fatal(http.ListenAndServe(port, nil))
+	log.Fatal(http.ListenAndServe(listenInterface, nil))
 }
