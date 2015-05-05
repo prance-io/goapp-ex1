@@ -16,6 +16,7 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
+	log.Printf("Listening on: %v", port)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hi!\n")
